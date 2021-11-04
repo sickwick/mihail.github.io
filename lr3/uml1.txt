@@ -1,0 +1,16 @@
+@startuml
+actor "Мастер" as owner
+actor "Нотариус" as notr
+entity "Договор" as dog
+boundary "Система-агрегатор деятельности" as app
+entity "База данных" as data
+actor "Риелтор" as trainee
+owner-> app : Создание заказа в системе
+app-> data : Запись заказа в БД
+notr-> dog : Создание договра
+dog-> app : Подписание договора
+app-> data : Запись договора в БД
+owner-> app : Формирование характеристик недвижимости
+app-> data : Запись характеристик в БД
+data-> trainee : Вывод характеристик недвижимости
+@enduml

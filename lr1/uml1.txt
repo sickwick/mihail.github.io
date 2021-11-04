@@ -1,0 +1,12 @@
+@startuml
+skinparam class {
+	BackgroundColor White
+	ArrowColor Black
+	BorderColor Black
+}
+class "Владелец" as P {
+ Риелтор
+Продать квартиру (Квартира, До конца месяца) -> Деньги
+}
+hide circle
+@enduml
