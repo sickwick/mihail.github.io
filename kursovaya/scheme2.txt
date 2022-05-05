@@ -1,0 +1,14 @@
+@startuml
+skinparam BackgroundColor transparent
+skinparam componentStyle uml2
+
+AMQP-[Web:RabbitMQ]
+[Клиентское приложение] - http
+[Клиентское приложение] - AMQP
+http - [Web:Сервер]
+[Web:Сервер] - AMQP
+[Web:Сервер] - RESP
+RESP - [Web:Redis]
+[Web:Сервер]- TCP
+TCP - [БД: MongoDB]
+@enduml
