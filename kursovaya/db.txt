@@ -1,0 +1,29 @@
+@startuml
+skinparam class {
+	BackgroundColor White
+	ArrowColor Black
+	BorderColor Black
+}
+hide circle
+hide methods
+
+class Настройки{
+   ID : Число
+   IDКлиента : Число
+   Контент: Строка
+   ДатаИзменения: Строка
+}
+class Клиенты {
+   ID : Строка
+   Название: Строка
+   ДатаИзменения: Строка
+}
+class Функциональные_переключатели {
+   ID : Строка
+   Контент: Строка
+   IDКлиента: Число
+}
+
+Клиенты --> Настройки
+Клиенты --> Функциональные_переключатели 
+@enduml
