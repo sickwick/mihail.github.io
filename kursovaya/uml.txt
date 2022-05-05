@@ -1,0 +1,36 @@
+@startuml
+skinparam monochrome true
+hide circle
+hide methods
+left to right direction
+skinparam packageStyle rectangle
+
+actor "Пользователь_системы"
+actor "Администратор"
+actor "Модуль_администратора" 
+actor "Программный_модуль" 
+
+Модуль_администратора --|> Программный_модуль
+
+rectangle Сервер {
+usecase case1 as "Сформировать список настроек"
+usecase case2 as "Выбрать клиента"
+usecase case3 as "Выбрать настройки"
+usecase case4 as "Отправить сообщение"
+usecase case5 as "Добавить сервис в очередь"
+ Пользователь_системы <|-- Администратор
+ Администратор -- case1
+ (case1) .> (case2) : include
+ (case1) .> (case3) : include
+ (case1) .> (case4) : include
+ (case5) .> (case1) : extends
+ 
+
+ case1 -- Модуль_администратора
+ case2 -- Модуль_администратора
+ case3 -- Модуль_администратора
+ case4 -- Модуль_администратора
+ case5 -- Модуль_администратора
+}
+
+@enduml
