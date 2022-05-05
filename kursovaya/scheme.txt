@@ -1,0 +1,47 @@
+@startuml
+skinparam monochrome true
+
+actor Администратор as user
+participant "Клиентское приложение" as cli
+participant  "Распределенный кэш" as cache
+participant  "Брокер" as rabbit
+participant "Сервер" as serv
+database "База данных" as base
+
+user -> serv: Сохранить настройки
+activate serv
+serv->cache: Найти клиента
+activate cache
+cache->serv
+deactivate cache
+serv-> serv: Cоздать локальный документ
+serv -> base: Сохранить настройки
+base--> serv 
+serv--> user
+deactivate serv
+deactivate serv
+
+
+user->serv: Изменить настройки
+activate serv
+serv->cache: Найти клиента
+activate cache
+cache->serv
+deactivate cache
+serv -> base: Получить настройки
+activate base
+base --> serv
+deactivate base
+serv-> rabbit: Поместить сообщение в очередь
+activate rabbit
+rabbit-> cli: Отправить сообщение
+activate cli
+cli-->rabbit
+rabbit-->serv
+deactivate cli
+deactivate rabbit
+serv-->user
+deactivate serv
+
+
+@enduml
